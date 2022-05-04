@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ListaService {
 
@@ -23,4 +25,8 @@ public class ListaService {
         return response;
     }
 
+    public List<Lista> pegarTodasListas() {
+        List<Lista> response = listaRepository.findAll();
+        return response;
+    }
 }
