@@ -1,16 +1,16 @@
 package com.luanda.zappts.desafio.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
+@ToString
 @Entity
-public class Carta implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Carta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +33,6 @@ public class Carta implements Serializable {
 
     @JsonProperty("quantidade")
     private Integer quantidade;
+
 
 }
