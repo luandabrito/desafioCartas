@@ -21,10 +21,16 @@ public class CartaController {
     private static final Logger logger = LoggerFactory.getLogger(CartaController.class);
 
     @PostMapping
-    public void salvarCarta(@RequestBody Carta carta){
+    public Carta salvarCarta(@RequestBody Carta carta){
+        Carta response = null;
 
-        logger.info("Iniciando salvamento da carta");
-        cartaService.salvarCarta(carta);
+        try {
+            logger.info("Iniciando salvamento da carta");
+            response = cartaService.salvarCarta(carta);
+        } catch (Exception e) {
+            logger.error("Erro ao salvar carta: {}", e.getMessage());
+        }
+        return response;
 
     }
 
