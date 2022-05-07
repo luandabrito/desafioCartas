@@ -19,14 +19,14 @@ public class ListaController {
     private static final Logger logger = LoggerFactory.getLogger(ListaController.class);
 
     @PostMapping
-    public Lista criarLista(@RequestBody Lista lista){
+    public Lista criarLista(@RequestBody Lista lista) throws Exception {
         Lista response = null;
 
         try {
             logger.info("Iniciando criação de lista");
             response = listaService.criarLista(lista);
         } catch (Exception e) {
-            logger.error("Erro ao criar lista: {}", e.getMessage());
+            throw new Exception("Erro ao criar lista: " + e.getMessage());
         }
 
         return response;

@@ -2,12 +2,16 @@ package com.luanda.zappts.desafio.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @ToString
 @Entity
 public class Lista {
@@ -21,5 +25,5 @@ public class Lista {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "lista")
-    private List<Carta> cartaList = new ArrayList<>();
+    private List<Carta> cartas = new ArrayList<>();
 }

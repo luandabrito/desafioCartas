@@ -2,10 +2,14 @@ package com.luanda.zappts.desafio.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @ToString
 @Entity
 public class Carta {
@@ -33,9 +37,8 @@ public class Carta {
     private Integer quantidade;
 
     @JsonBackReference
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "lista_id")
-    @JsonProperty("lista")
+    @ManyToOne()
+    @JoinColumn(name = "listaId")
     private Lista lista;
 
 }
