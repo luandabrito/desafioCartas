@@ -48,7 +48,7 @@ public class ListaController {
             return resposta;
         } catch (ResponseStatusException e) {
             logger.error("Erro ao resgatar lista.", e);
-            throw new ResponseStatusException(e.getStatus(), "Erro ao resgatar lista: ");
+            throw new ResponseStatusException(e.getStatus(), "Erro ao resgatar lista: " + e.getMessage());
         }
     }
 
