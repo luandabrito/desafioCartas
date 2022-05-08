@@ -18,7 +18,6 @@ public class JogadorService {
     private static final Logger logger = LoggerFactory.getLogger(JogadorService.class);
 
     public JogadorResponse criarJogador(Jogador jogador){
-        logger.info("Criando jogador: {}", jogador.toString());
         Jogador resposta = jogadorRepository.save(jogador);
         logger.info("Jogador criado com sucesso");
         return JogadorResponse
