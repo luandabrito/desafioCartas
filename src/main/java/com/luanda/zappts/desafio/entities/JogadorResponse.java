@@ -3,7 +3,6 @@ package com.luanda.zappts.desafio.entities;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
-import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
