@@ -20,19 +20,21 @@ public class ListaService {
     private static final Logger logger = LoggerFactory.getLogger(ListaService.class);
 
     public Lista criarLista(Lista lista){
-
-        logger.info("Criando Lista: {}", lista.toString());
-        Lista response = listaRepository.save(lista);
-
-        return response;
+        logger.info("Criando lista: {}", lista.toString());
+        Lista resposta = listaRepository.save(lista);
+        logger.info("Lista criada com sucesso: {}", resposta.toString());
+        return resposta;
     }
 
     public List<Lista> pegarTodasListas() {
-        List<Lista> response = listaRepository.findAll();
-        return response;
+        logger.info("Resgatando todas as listas");
+        List<Lista> resposta = listaRepository.findAll();
+        logger.info("Listas resgatadas com sucesso");
+        return resposta;
     }
 
     public Lista pegarUmaLista(Integer id) {
+        logger.info("Resgatando a lista de id: {}", id);
         return listaRepository.findById(id)
                 .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lista não localizada"));
     }

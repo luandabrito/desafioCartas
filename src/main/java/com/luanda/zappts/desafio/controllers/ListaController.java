@@ -5,7 +5,6 @@ import com.luanda.zappts.desafio.service.ListaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,34 +21,35 @@ public class ListaController {
 
     @PostMapping
     public Lista criarLista(@RequestBody Lista lista) throws Exception {
-        Lista response = null;
-
         try {
             logger.info("Iniciando criação de lista");
-            response = listaService.criarLista(lista);
+            return listaService.criarLista(lista);
         } catch (Exception e) {
             throw new Exception("Erro ao criar lista: " + e.getMessage());
         }
-
-        return response;
     }
 
     @GetMapping
-    public List<Lista> pegarTodasListas(){
-        List<Lista> response = null;
-
+    public List<Lista> pegarTodasListas() throws Exception{
         try {
             logger.info("Iniciando resgate das listas");
-            response =  listaService.pegarTodasListas();
+            return listaService.pegarTodasListas();
         } catch (Exception e) {
-            logger.error("Erro ao resgatar listas: {}", e.getMessage());
+            throw new Exception("Erro ao resgatar listas: " + e.getMessage());
         }
-       return response;
     }
 
     @GetMapping("{id}")
     public Lista pegarUmaLista(@PathVariable Integer id){
-        return listaService.pegarUmaLista(id);
+        try {
+            logger.info("Iniciando resgate da lista de id: {}", id);
+            Lista resposta = listaService.pegarUmaLista(id);
+            logger.info("Lista Resgatada com sucesso.");
+            return resposta;
+        } catch (ResponseStatusException e) {
+            logger.error("Erro ao resgatar lista.", e);
+            throw new ResponseStatusException(e.getStatus(), "Erro ao resgatar lista: ");
+        }
     }
 
 

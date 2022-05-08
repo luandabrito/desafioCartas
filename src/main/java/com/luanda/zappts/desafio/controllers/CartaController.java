@@ -5,6 +5,7 @@ import com.luanda.zappts.desafio.service.CartaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,26 +19,34 @@ public class CartaController {
 
     @PostMapping
     public Carta salvarCarta(@RequestBody Carta carta) throws Exception {
-        Carta response = null;
-
         try {
-            logger.info("Iniciando salvamento da carta");
-            response = cartaService.salvarCarta(carta);
+            logger.info("Iniciando o salvamento da carta");
+            return cartaService.salvarCarta(carta);
         } catch (Exception e) {
             throw new Exception("Erro ao salvar carta: " + e.getMessage());
         }
-        return response;
+
     }
 
     @DeleteMapping("{id}")
-    public void deletarCarta(@PathVariable Integer id){
-        logger.info("Iniciando deletar carta id: {}", id);
-        cartaService.deletarCarta(id);
+    public void deletarCarta(@PathVariable Integer id) throws Exception {
+        try {
+            logger.info("Iniciando remoção da carta id: {}", id);
+            cartaService.deletarCarta(id);
+        } catch (Exception e) {
+            throw new Exception("Erro ao deletar carta: " + e.getMessage());
+        }
     }
 
     @PutMapping("{id}")
-    public void atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta){
-        logger.info("Iniciando atualização da carta: {}", id);
-        cartaService.atualizarCarta(id, carta);
+    public ResponseEntity<?> atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta) throws Exception {
+        try {
+            logger.info("Iniciando atualização da carta: {}", id);
+            cartaService.atualizarCarta(id, carta);
+            return null;
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar carta: " + e.getMessage());
+        }
     }
+
 }

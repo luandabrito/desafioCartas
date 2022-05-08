@@ -18,10 +18,11 @@ public class CartaService {
     private static final Logger logger = LoggerFactory.getLogger(CartaService.class);
 
     public Carta salvarCarta(Carta carta){
-        logger.info("Salvar carta: {}", carta.toString());
-        Carta response = cartaRepository.save(carta);
+        logger.info("Salvando carta: {}", carta.toString());
+        Carta resposta = cartaRepository.save(carta);
+        logger.info("Carta salva com sucesso: {}", resposta);
 
-        return response;
+        return resposta;
     }
 
     public void deletarCarta(Integer id){
@@ -35,7 +36,7 @@ public class CartaService {
     }
 
     public void atualizarCarta(Integer id, Carta cartaAtualizada){
-        logger.info("Atualizando carta, id: {}, atualizações: {}", id, cartaAtualizada);
+        logger.info("Atualizando carta, id: {}, atualizações: preco: {}, quantidade: {}", id, cartaAtualizada.getPreco(), cartaAtualizada.getQuantidade());
         cartaRepository.findById(id).map(carta -> {
             if(cartaAtualizada.getPreco() != null)
                 carta.setPreco(cartaAtualizada.getPreco());
