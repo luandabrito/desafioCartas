@@ -5,7 +5,9 @@ import com.luanda.zappts.desafio.repositories.ListaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,5 +30,10 @@ public class ListaService {
     public List<Lista> pegarTodasListas() {
         List<Lista> response = listaRepository.findAll();
         return response;
+    }
+
+    public Lista pegarUmaLista(Integer id) {
+        return listaRepository.findById(id)
+                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lista não localizada"));
     }
 }
