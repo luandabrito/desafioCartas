@@ -2,6 +2,7 @@ package com.luanda.zappts.desafio.service;
 
 import com.luanda.zappts.desafio.entities.Carta;
 import com.luanda.zappts.desafio.repositories.CartaRepository;
+import com.luanda.zappts.desafio.utils.Validador;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,17 @@ public class CartaService {
     @Autowired
     CartaRepository cartaRepository;
 
+    @Autowired
+    Validador validador;
+
     private static final Logger logger = LoggerFactory.getLogger(CartaService.class);
 
-    public Carta salvarCarta(Carta carta){
+    public Carta salvarCarta(Carta carta) throws Exception {
+        try {
+            validador.validarValor(carta.getPreco());
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
         logger.info("Salvando carta: {}", carta.toString());
         Carta resposta = cartaRepository.save(carta);
         logger.info("Carta salva com sucesso: {}", resposta);

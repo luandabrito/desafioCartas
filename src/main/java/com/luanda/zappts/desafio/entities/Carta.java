@@ -37,7 +37,7 @@ public class Carta {
 
     @NotNull(message = "O campo preco não pode ser nulo")
     @JsonProperty("preco")
-    private Double preco;
+    private String preco;
 
     @NotNull(message = "O campo quantidade não pode ser nulo")
     @JsonProperty("quantidade")
