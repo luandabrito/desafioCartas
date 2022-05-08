@@ -34,4 +34,10 @@ public class CartaController {
 
     }
 
+    @DeleteMapping("{id}")
+    public void deletarCarta(@PathVariable Integer id){
+        cartaService.deletarCarta(id);
+
+    }
+
 }

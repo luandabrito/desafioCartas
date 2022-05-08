@@ -5,7 +5,9 @@ import com.luanda.zappts.desafio.repositories.CartaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CartaService {
@@ -21,6 +23,15 @@ public class CartaService {
         Carta response = cartaRepository.save(carta);
 
         return response;
+    }
+
+    public void deletarCarta(Integer id){
+        cartaRepository.findById(id)
+                .map(carta -> {
+                    cartaRepository.delete(carta);
+                    return Void.TYPE;
+                })
+                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carta não localizada"));
     }
 
 }
