@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import static com.luanda.zappts.desafio.utils.Constantes.CARTA_NAO_LOCALIZADA;
+
 @Service
 public class CartaService {
 
@@ -32,7 +34,7 @@ public class CartaService {
                     cartaRepository.delete(carta);
                     return Void.TYPE;
                 })
-                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carta não localizada"));
+                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
     }
 
     public void atualizarCarta(Integer id, Carta cartaAtualizada){
@@ -43,7 +45,7 @@ public class CartaService {
             if(cartaAtualizada.getQuantidade() != null)
                 carta.setQuantidade(cartaAtualizada.getQuantidade());
             return cartaRepository.save(carta);
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carta não localizada"));
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
     }
 
 }
