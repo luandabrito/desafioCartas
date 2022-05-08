@@ -5,11 +5,7 @@ import com.luanda.zappts.desafio.service.CartaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/cartas")
@@ -31,12 +27,17 @@ public class CartaController {
             throw new Exception("Erro ao salvar carta: " + e.getMessage());
         }
         return response;
-
     }
 
     @DeleteMapping("{id}")
     public void deletarCarta(@PathVariable Integer id){
+        logger.info("Iniciando deletar carta id: {}", id);
         cartaService.deletarCarta(id);
     }
 
+    @PutMapping("{id}")
+    public void atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta){
+        logger.info("Iniciando atualização da carta: {}", id);
+        cartaService.atualizarCarta(id, carta);
+    }
 }
