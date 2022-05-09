@@ -15,10 +15,7 @@ import java.util.List;
 public class Jogador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @JsonProperty("usuario")
+    @JoinColumn(name = "codUsuario", unique = true)
     private String usuario;
 
     @JsonProperty("senha")

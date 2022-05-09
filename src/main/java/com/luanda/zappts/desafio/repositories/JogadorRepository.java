@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JogadorRepository extends JpaRepository<Jogador, Integer> {
+
+    public Jogador findByUsuario(String usuario);
 }

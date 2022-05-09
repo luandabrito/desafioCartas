@@ -36,25 +36,33 @@ public class CartaService {
         return resposta;
     }
 
-    public void deletarCarta(Integer id){
-        logger.info("Deletando carta de id: {}", id);
-        cartaRepository.findById(id)
-                .map(carta -> {
-                    cartaRepository.delete(carta);
-                    return Void.TYPE;
-                })
-                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
+    public void deletarCarta(Integer id, String usuario, String senha) throws Exception {
+        if (validador.validarSenhaEUsuario(id, usuario, senha)) {
+            logger.info("Deletando carta de id: {}", id);
+            cartaRepository.findById(id)
+                    .map(carta -> {
+                        cartaRepository.delete(carta);
+                        return Void.TYPE;
+                    })
+                    .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
+        } else {
+            throw new Exception("Usuário e/ou senha incorretos");
+        }
     }
 
-    public void atualizarCarta(Integer id, Carta cartaAtualizada){
-        logger.info("Atualizando carta, id: {}, atualizações: preco: {}, quantidade: {}", id, cartaAtualizada.getPreco(), cartaAtualizada.getQuantidade());
-        cartaRepository.findById(id).map(carta -> {
-            if(cartaAtualizada.getPreco() != null)
-                carta.setPreco(cartaAtualizada.getPreco());
-            if(cartaAtualizada.getQuantidade() != null)
-                carta.setQuantidade(cartaAtualizada.getQuantidade());
-            return cartaRepository.save(carta);
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
+    public void atualizarCarta(Integer id, Carta cartaAtualizada, String usuario, String senha) throws Exception {
+        if (validador.validarSenhaEUsuario(id, usuario, senha)) {
+            logger.info("Atualizando carta, id: {}, atualizações: preco: {}, quantidade: {}", id, cartaAtualizada.getPreco(), cartaAtualizada.getQuantidade());
+            cartaRepository.findById(id).map(carta -> {
+                if(cartaAtualizada.getPreco() != null)
+                    carta.setPreco(cartaAtualizada.getPreco());
+                if(cartaAtualizada.getQuantidade() != null)
+                    carta.setQuantidade(cartaAtualizada.getQuantidade());
+                return cartaRepository.save(carta);
+            }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CARTA_NAO_LOCALIZADA));
+        } else {
+            throw new Exception("Usuário e/ou senha incorretos");
+        }
     }
 
 }

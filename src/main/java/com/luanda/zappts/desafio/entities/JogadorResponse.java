@@ -9,10 +9,7 @@ import java.util.List;
 @Builder
 public class JogadorResponse {
 
-    @JsonProperty("id")
-    private Integer id;
-
-    @JsonProperty("usuario")
+    @JsonProperty("codUsuario")
     private String usuario;
 
     @JsonProperty("listas")

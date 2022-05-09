@@ -2,14 +2,13 @@ package com.luanda.zappts.desafio.controllers;
 
 import com.luanda.zappts.desafio.entities.Jogador;
 import com.luanda.zappts.desafio.entities.JogadorResponse;
+import com.luanda.zappts.desafio.entities.Lista;
 import com.luanda.zappts.desafio.service.JogadorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/jogadores")
@@ -27,6 +26,19 @@ public class JogadorController {
             return jogadorService.criarJogador(jogador);
         } catch (Exception e) {
             throw new Exception("Erro ao criar jogador: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("{usuario}")
+    public JogadorResponse pegarUmJogador(@PathVariable String usuario){
+        try {
+            logger.info("Iniciando resgate do jogador: {}", usuario);
+            JogadorResponse resposta = jogadorService.pegarUmJogador(usuario);
+            logger.info("Jogador Resgatado com sucesso.");
+            return resposta;
+        } catch (ResponseStatusException e) {
+            logger.error("Erro ao resgatar jogador.", e);
+            throw new ResponseStatusException(e.getStatus(), "Erro ao resgatar jogador: " + e.getMessage());
         }
     }
 

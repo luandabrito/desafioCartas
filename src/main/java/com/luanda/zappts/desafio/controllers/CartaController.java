@@ -2,6 +2,7 @@ package com.luanda.zappts.desafio.controllers;
 
 import com.luanda.zappts.desafio.entities.Carta;
 import com.luanda.zappts.desafio.service.CartaService;
+import com.luanda.zappts.desafio.utils.Validador;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +30,20 @@ public class CartaController {
     }
 
     @DeleteMapping("{id}")
-    public void deletarCarta(@PathVariable Integer id) throws Exception {
+    public void deletarCarta(@PathVariable Integer id, @RequestHeader String usuario, @RequestHeader String senha) throws Exception {
         try {
             logger.info("Iniciando remoção da carta id: {}", id);
-            cartaService.deletarCarta(id);
+            cartaService.deletarCarta(id, usuario, senha);
         } catch (Exception e) {
             throw new Exception("Erro ao deletar carta: " + e.getMessage());
         }
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta) throws Exception {
+    public ResponseEntity<?> atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta, @RequestHeader String usuario, @RequestHeader String senha) throws Exception {
         try {
             logger.info("Iniciando atualização da carta: {}", id);
-            cartaService.atualizarCarta(id, carta);
+            cartaService.atualizarCarta(id, carta, usuario, senha);
             return null;
         } catch (Exception e) {
             throw new Exception("Erro ao atualizar carta: " + e.getMessage());

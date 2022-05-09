@@ -11,6 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+import static com.luanda.zappts.desafio.utils.Constantes.LISTA_NAO_LOCALIZADA;
+
 @Service
 public class ListaService {
 
@@ -36,6 +38,6 @@ public class ListaService {
     public Lista pegarUmaLista(Integer id) {
         logger.info("Resgatando a lista de id: {}", id);
         return listaRepository.findById(id)
-                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lista não localizada"));
+                .orElseThrow( ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, LISTA_NAO_LOCALIZADA));
     }
 }
