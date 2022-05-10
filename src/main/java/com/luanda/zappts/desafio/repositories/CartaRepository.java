@@ -1,6 +1,6 @@
 package com.luanda.zappts.desafio.repositories;
 
-import com.luanda.zappts.desafio.entities.Carta;
+import com.luanda.zappts.desafio.domain.Carta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

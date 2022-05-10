@@ -1,6 +1,6 @@
 package com.luanda.zappts.desafio.service;
 
-import com.luanda.zappts.desafio.entities.Carta;
+import com.luanda.zappts.desafio.domain.Carta;
 import com.luanda.zappts.desafio.repositories.CartaRepository;
 import com.luanda.zappts.desafio.utils.Validador;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.luanda.zappts.desafio.entities;
+package com.luanda.zappts.desafio.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

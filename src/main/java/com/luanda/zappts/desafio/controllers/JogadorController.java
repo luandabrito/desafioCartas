@@ -1,8 +1,7 @@
 package com.luanda.zappts.desafio.controllers;
 
-import com.luanda.zappts.desafio.entities.Jogador;
-import com.luanda.zappts.desafio.entities.JogadorResponse;
-import com.luanda.zappts.desafio.entities.Lista;
+import com.luanda.zappts.desafio.domain.Jogador;
+import com.luanda.zappts.desafio.domain.JogadorResponse;
 import com.luanda.zappts.desafio.service.JogadorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

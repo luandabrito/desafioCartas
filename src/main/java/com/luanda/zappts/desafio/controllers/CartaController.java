@@ -1,8 +1,7 @@
 package com.luanda.zappts.desafio.controllers;
 
-import com.luanda.zappts.desafio.entities.Carta;
+import com.luanda.zappts.desafio.domain.Carta;
 import com.luanda.zappts.desafio.service.CartaService;
-import com.luanda.zappts.desafio.utils.Validador;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ public class CartaController {
         } catch (Exception e) {
             throw new Exception("Erro ao salvar carta: " + e.getMessage());
         }
-
     }
 
     @DeleteMapping("{id}")

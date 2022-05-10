@@ -1,6 +1,6 @@
 package com.luanda.zappts.desafio.controllers;
 
-import com.luanda.zappts.desafio.entities.Lista;
+import com.luanda.zappts.desafio.domain.Lista;
 import com.luanda.zappts.desafio.service.ListaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

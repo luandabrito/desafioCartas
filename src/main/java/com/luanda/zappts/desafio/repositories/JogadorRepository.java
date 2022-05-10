@@ -1,6 +1,6 @@
 package com.luanda.zappts.desafio.repositories;
 
-import com.luanda.zappts.desafio.entities.Jogador;
+import com.luanda.zappts.desafio.domain.Jogador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

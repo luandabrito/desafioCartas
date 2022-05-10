@@ -1,8 +1,7 @@
 package com.luanda.zappts.desafio.utils;
 
-import com.luanda.zappts.desafio.entities.Carta;
-import com.luanda.zappts.desafio.entities.Jogador;
-import com.luanda.zappts.desafio.entities.Lista;
+import com.luanda.zappts.desafio.domain.Carta;
+import com.luanda.zappts.desafio.domain.Lista;
 import com.luanda.zappts.desafio.repositories.CartaRepository;
 import com.luanda.zappts.desafio.repositories.JogadorRepository;
 import com.luanda.zappts.desafio.repositories.ListaRepository;
@@ -12,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.Optional;
 
 import static com.luanda.zappts.desafio.utils.Constantes.*;
 
