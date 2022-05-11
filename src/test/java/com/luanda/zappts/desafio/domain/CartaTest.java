@@ -1,25 +1,15 @@
 package com.luanda.zappts.desafio.domain;
 
-import org.junit.Before;
+import com.luanda.zappts.desafio.builders.CartaBuilder;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 @SpringBootTest
 public class CartaTest {
 
-    Carta carta = new Carta();
-
-    @Before
-    public void setUp(){
-        carta.setNome("Fogo");
-        carta.setEdicao(2);
-        carta.setIdioma("Portugues");
-        carta.setFoil(true);
-        carta.setPreco("R$2.000,00");
-        carta.setQuantidade(2);
-    }
+    Carta carta = CartaBuilder.umaCarta().agora();
 
     @Test
     public void testDomain(){
@@ -29,6 +19,7 @@ public class CartaTest {
         assertNotNull(carta.getFoil());
         assertNotNull(carta.getPreco());
         assertNotNull(carta.getQuantidade());
+        assertNotNull(carta.getLista());
     }
 
 }

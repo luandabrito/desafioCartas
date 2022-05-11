@@ -38,7 +38,16 @@ public class JogadorControllerTest {
     @Test(expected = Exception.class)
     public void naoDeveCriarJogador() throws Exception {
         when(jogadorService.criarJogador(jogador)).thenThrow(Exception.class);
-        JogadorResponse retorno = jogadorController.criarJogador(jogador);
+        jogadorController.criarJogador(jogador);
+    }
+
+    @Test
+    public void pegarUmJogadorComSucesso(){
+        when(jogadorService.pegarUmJogador(any())).thenReturn(jogadorResponse);
+        JogadorResponse retorno = jogadorController.pegarUmJogador(any());
+
+        verify(jogadorService, times(1)).pegarUmJogador(any());
+        assertEquals(jogador.getUsuario(), jogadorResponse.getUsuario());
     }
 
 }

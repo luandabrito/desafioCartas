@@ -6,7 +6,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -17,6 +16,7 @@ public class JogadorResponseTest {
     @Test
     public void testDomain(){
         assertNotNull(jogadorResponse.getUsuario());
+        assertNotNull(jogadorResponse.getListas());
 
     }
 }

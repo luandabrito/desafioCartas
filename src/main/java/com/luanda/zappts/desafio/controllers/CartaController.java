@@ -38,11 +38,10 @@ public class CartaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta, @RequestHeader String usuario, @RequestHeader String senha) throws Exception {
+    public void atualizarCarta(@PathVariable Integer id, @RequestBody Carta carta, @RequestHeader String usuario, @RequestHeader String senha) throws Exception {
         try {
             logger.info("Iniciando atualização da carta: {}", id);
             cartaService.atualizarCarta(id, carta, usuario, senha);
-            return null;
         } catch (Exception e) {
             throw new Exception("Erro ao atualizar carta: " + e.getMessage());
         }

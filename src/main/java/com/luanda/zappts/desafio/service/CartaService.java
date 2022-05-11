@@ -26,14 +26,13 @@ public class CartaService {
     public Carta salvarCarta(Carta carta) throws Exception {
         try {
             validador.validarValor(carta.getPreco());
+            logger.info("Salvando carta: {}", carta.toString());
+            Carta resposta = cartaRepository.save(carta);
+            logger.info("Carta salva com sucesso: {}", resposta);
+            return resposta;
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        logger.info("Salvando carta: {}", carta.toString());
-        Carta resposta = cartaRepository.save(carta);
-        logger.info("Carta salva com sucesso: {}", resposta);
-
-        return resposta;
     }
 
     public void deletarCarta(Integer id, String usuario, String senha) throws Exception {
