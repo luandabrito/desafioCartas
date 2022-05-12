@@ -30,20 +30,23 @@ public class ListaController {
     }
 
     @GetMapping
-    public List<Lista> pegarTodasListas() throws Exception{
+    public List<Lista> pegarTodasListas(@RequestParam String sort) throws Exception{
         try {
             logger.info("Iniciando resgate das listas");
-            return listaService.pegarTodasListas();
+            return listaService.pegarTodasListas(sort);
         } catch (Exception e) {
             throw new Exception("Erro ao resgatar listas: " + e.getMessage());
         }
     }
 
     @GetMapping("{id}")
-    public Lista pegarUmaLista(@PathVariable Integer id){
+    public Lista pegarUmaLista(@PathVariable Integer id, @RequestParam String sort){
         try {
             logger.info("Iniciando resgate da lista de id: {}", id);
             Lista resposta = listaService.pegarUmaLista(id);
+
+            resposta = listaService.ordenarLista(resposta, sort);
+
             logger.info("Lista Resgatada com sucesso.");
             return resposta;
         } catch (ResponseStatusException e) {

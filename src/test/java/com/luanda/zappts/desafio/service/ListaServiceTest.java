@@ -40,7 +40,7 @@ public class ListaServiceTest {
     public void pegarTodasListasComSucesso(){
         listaCartas.add(lista);
         when(listaRepository.findAll()).thenReturn(listaCartas);
-        List<Lista> retorno = listaService.pegarTodasListas();
+        List<Lista> retorno = listaService.pegarTodasListas("nome");
 
         verify(listaRepository, times(1)).findAll();
         assertEquals(listaCartas.get(0).getNome(), retorno.get(0).getNome());

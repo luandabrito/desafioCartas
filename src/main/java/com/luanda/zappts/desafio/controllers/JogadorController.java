@@ -28,8 +28,8 @@ public class JogadorController {
         }
     }
 
-    @GetMapping("{usuario}")
-    public JogadorResponse pegarUmJogador(@PathVariable String usuario){
+    @GetMapping
+    public JogadorResponse pegarUmJogador(@RequestParam String usuario){
         try {
             logger.info("Iniciando resgate do jogador: {}", usuario);
             JogadorResponse resposta = jogadorService.pegarUmJogador(usuario);

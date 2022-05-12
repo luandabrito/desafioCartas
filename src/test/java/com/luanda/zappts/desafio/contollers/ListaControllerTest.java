@@ -45,16 +45,16 @@ public class ListaControllerTest {
     @Test
     public void pegarTodasListasComSucesso() throws Exception {
         listaCartas.add(lista);
-        when(listaService.pegarTodasListas()).thenReturn(listaCartas);
-        listaController.pegarTodasListas();
+        when(listaService.pegarTodasListas(any())).thenReturn(listaCartas);
+        listaController.pegarTodasListas(any());
 
-        verify(listaService,times(1)).pegarTodasListas();
+        verify(listaService,times(1)).pegarTodasListas(any());
     }
 
     @Test
     public void pegarUmaListaComSucesso(){
         when(listaService.pegarUmaLista(any())).thenReturn(lista);
-        Lista retorno = listaController.pegarUmaLista(any());
+        Lista retorno = listaController.pegarUmaLista(any(), "nome");
 
         verify(listaService, times(1)).pegarUmaLista(any());
         assertEquals(lista.getNome(), retorno.getNome());
