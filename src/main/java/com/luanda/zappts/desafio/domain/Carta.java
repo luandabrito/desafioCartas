@@ -48,4 +48,19 @@ public class Carta {
     @JoinColumn(name = "listaId")
     private Lista lista;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Carta) {
+            Carta qualquer = (Carta) o;
+            return this.nome.equals(qualquer.getNome())
+                    && this.edicao.equals(qualquer.getEdicao())
+                    && this.idioma.equals(qualquer.getIdioma())
+                    && this.foil.equals(qualquer.getFoil())
+                    && this.preco.equals(qualquer.getPreco())
+                    && this.quantidade.equals(qualquer.getQuantidade());
+        }else {
+            return false;
+        }
+    }
+
 }
