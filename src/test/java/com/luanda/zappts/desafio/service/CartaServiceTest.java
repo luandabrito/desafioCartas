@@ -31,6 +31,7 @@ public class CartaServiceTest {
     @Test
     public void salvarCartaComSucesso() throws Exception {
         when(cartaRepository.save(carta)).thenReturn(carta);
+        doNothing().when(validador).validarCarta(carta);
         Carta retorno = cartaService.salvarCarta(carta);
 
         verify(cartaRepository, times(1)).save(carta);

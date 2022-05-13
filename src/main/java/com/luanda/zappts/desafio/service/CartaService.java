@@ -30,7 +30,7 @@ public class CartaService {
     public Carta salvarCarta(Carta carta) throws Exception {
         try {
             validador.validarValor(carta.getPreco());
-            validarCarta(carta);
+            validador.validarCarta(carta);
             logger.info("Salvando carta: {}", carta.toString());
             Carta resposta = cartaRepository.save(carta);
             logger.info("Carta salva com sucesso: {}", resposta);
@@ -67,18 +67,6 @@ public class CartaService {
         } else {
             throw new Exception("Usuário e/ou senha incorretos");
         }
-    }
-
-    private void validarCarta(Carta carta) throws Exception {
-        Lista lista = listaService.pegarUmaLista(carta.getLista().getId());
-        logger.info("Validando se já existe carta salva com as mesmas caracteristicas.");
-
-        for (Carta cartaSalva : lista.getCartas()) {
-            if(carta.equals(cartaSalva)){
-                throw new Exception("Carta já existe com id: " + cartaSalva.getId());
-            }
-        }
-        logger.info("Carta validada com sucesso.");
     }
 
 }

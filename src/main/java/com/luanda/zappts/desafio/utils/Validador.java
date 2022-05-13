@@ -5,6 +5,7 @@ import com.luanda.zappts.desafio.domain.Lista;
 import com.luanda.zappts.desafio.repositories.CartaRepository;
 import com.luanda.zappts.desafio.repositories.JogadorRepository;
 import com.luanda.zappts.desafio.repositories.ListaRepository;
+import com.luanda.zappts.desafio.service.ListaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class Validador {
     @Autowired
     CartaRepository cartaRepository;
 
+    @Autowired
+    ListaService listaService;
+
     private static final Logger logger = LoggerFactory.getLogger(Validador.class);
 
     public void validarValor(String preco) throws Exception {
@@ -43,6 +47,18 @@ public class Validador {
             return true;
         }
         return false;
+    }
+
+    public void validarCarta(Carta carta) throws Exception {
+        Lista lista = listaService.pegarUmaLista(carta.getLista().getId());
+        logger.info("Validando se já existe carta salva com as mesmas caracteristicas.");
+
+        for (Carta cartaSalva : lista.getCartas()) {
+            if(carta.equals(cartaSalva)){
+                throw new Exception("Carta já existe com id: " + cartaSalva.getId());
+            }
+        }
+        logger.info("Carta validada com sucesso.");
     }
 
 }

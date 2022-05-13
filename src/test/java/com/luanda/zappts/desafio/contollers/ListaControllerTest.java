@@ -54,6 +54,7 @@ public class ListaControllerTest {
     @Test
     public void pegarUmaListaComSucesso(){
         when(listaService.pegarUmaLista(any())).thenReturn(lista);
+        when(listaService.ordenarLista(lista, "nome")).thenReturn(lista);
         Lista retorno = listaController.pegarUmaLista(any(), "nome");
 
         verify(listaService, times(1)).pegarUmaLista(any());
